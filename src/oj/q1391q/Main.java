@@ -20,59 +20,63 @@ public class Main {
 		this.right = right;
 		this.a = a;
 		this.length = (bottom + 1) * (right + 1);
-		if(length == 1)
-			System.out.println(a[0][0]);
 	}
 
 	public void print() {
-		if (left >= right && top <= bottom)
+		if (left > right && top > bottom)
 			return;
-		for (int i = left; i <= right; i++) {
-			p(a[top][i]);
-		}
-		if (top != bottom)
+		if (top <= bottom) {
+			for (int i = left; i <= right; i++) {
+				p(a[top][i]);
+			}
 			top++;
-		for (int j = top; j <= bottom; j++) {
-			p(a[j][right]);
 		}
-		if (left != right)
+		if (left <= right && right >= 0) {
+			for (int j = top; j <= bottom; j++) {
+				p(a[j][right]);
+			}
 			right--;
-		for (int m = right; m >= left; m--) {
-			p(a[bottom][m]);
 		}
-		if (top != bottom)
+		if (top <= bottom && bottom >= 0) {
+			for (int m = right; m >= left; m--) {
+				p(a[bottom][m]);
+			}
 			bottom--;
-		for (int n = bottom; n >= top; n--) {
-			p(a[n][left]);
 		}
-		if (left != right)
+		if (left <= right) {
+			for (int n = bottom; n >= top; n--) {
+				p(a[n][left]);
+			}
 			left++;
+		}
 		print();
 	}
-	public void p(int value){
-		if(count < length - 1){
-			System.out.print(value+" ");
-		}else if(count == length - 1){
-			System.out.println(value);
+
+	public void p(int value) {
+		if (count < length - 1) {
+			System.out.print(value + " ");
+		} else if (count == length - 1) {
+			System.out.println(value + " ");
 		}
 		count++;
 	}
+
 	public static void main(String[] args) throws IOException {
-		StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-		while(st.nextToken() != StreamTokenizer.TT_EOF){
-			int row = (int)st.nval;
+		StreamTokenizer st = new StreamTokenizer(new BufferedReader(
+				new InputStreamReader(System.in)));
+		while (st.nextToken() != StreamTokenizer.TT_EOF) {
+			int row = (int) st.nval;
 			st.nextToken();
-			int col = (int)st.nval;
+			int col = (int) st.nval;
 			int[][] a = new int[row][col];
-			for(int i = 0; i < row; i++	){
-				for(int j = 0; j < col; j++){
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++) {
 					st.nextToken();
-					a[i][j] = (int)st.nval;
+					a[i][j] = (int) st.nval;
 				}
 			}
 			Main m = new Main(row - 1, col - 1, a);
 			m.print();
 		}
 	}
-
 }
