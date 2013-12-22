@@ -53,10 +53,8 @@ public class Main {
 	}
 
 	public void p(int value) {
-		if (count < length - 1) {
+		if (count < length) {
 			System.out.print(value + " ");
-		} else if (count == length - 1) {
-			System.out.println(value + " ");
 		}
 		count++;
 	}
@@ -77,6 +75,7 @@ public class Main {
 			}
 			Main m = new Main(row - 1, col - 1, a);
 			m.print();
+			System.out.println();
 		}
 	}
 }
