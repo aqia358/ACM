@@ -5,22 +5,35 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
 
-public class Main {
+/**
+ * 最小堆
+ * @author aqia358
+ *
+ */
+public class CopyOfMain {
 	
 	public int index = -1;
 	public int[] a;
 	
-	public Main(int size){
+	public CopyOfMain(int size){
 		this.a = new int[size];
 	}
 
-	public void min() {
-		int min = a[0];
-		for(int i = 0; i <= index; i++){
-			if(min > a[i]){
-				a[0] = a[i];
-				a[i] = min;
-				min = a[0];
+	public void buildMinTree() {
+		int l = (int) Math.ceil(index / 2.0) - 1;
+		for (int i = l; i >= 0; i--) {
+			int temp;
+			if (2 * i + 2 == index) {
+				if (a[2 * i + 1] > a[2 * i + 2]) {
+					temp = a[2 * i + 1];
+					a[2 * i + 1] = a[2 * i + 2];
+					a[2 * i + 2] = temp;
+				}
+			}
+			if (a[2 * i + 1] < a[i]) {
+				temp = a[i];
+				a[i] = a[2 * i + 1];
+				a[2 * i + 1] = temp;
 			}
 		}
 	}
@@ -28,7 +41,7 @@ public class Main {
 		if(index >= 0){
 			a[0] = a[index];
 			index--;
-			min();
+			buildMinTree();
 			System.out.println(a[0]);
 		}else{
 			System.out.println("NULL");
@@ -37,7 +50,7 @@ public class Main {
 	public void add(int data){
 		index++;
 		a[index] = data;
-		min();
+		buildMinTree();
 		System.out.println(a[0]);
 	}
 
@@ -45,7 +58,7 @@ public class Main {
 		StreamTokenizer st = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
 		while(st.nextToken() != StreamTokenizer.TT_EOF){
 			int n = (int)st.nval;
-			Main m = new Main(n);
+			CopyOfMain m = new CopyOfMain(n);
 			for(int i = 0; i < n; i++){
 				st.nextToken();
 				String op = st.sval;
