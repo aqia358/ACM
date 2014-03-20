@@ -1,4 +1,4 @@
-package practice2.quicksort;
+package practice.day2.quicksort;
 
 /**
  * 2014年3月18日 11:15:01

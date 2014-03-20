@@ -1,4 +1,4 @@
-package practice.shellsort;
+package practice.day1.shellsort;
 
 /**
  * 2014年3月17日 19:51:36 insert 2014年3月17日 19:56:39 

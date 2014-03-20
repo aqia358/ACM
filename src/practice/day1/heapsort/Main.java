@@ -1,4 +1,4 @@
-package practice.heapsort;
+package practice.day1.heapsort;
 
 /**
  * 2014年3月18日 14:41:32

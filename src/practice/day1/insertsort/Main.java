@@ -1,4 +1,4 @@
-package practice.insertsort;
+package practice.day1.insertsort;
 
 /**
  * 2014年3月15日 16:37:31

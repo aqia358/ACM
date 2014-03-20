@@ -1,34 +1,36 @@
-package practice.shellsort;
+package practice.day2.shellsort;
 
 /**
- * 2014年3月15日 16:50:32
+ * 2014年3月18日 11:10:18
+ * 2014年3月18日 11:14:34
  * @author aqia358
- * 2014年3月15日 17:07:19
+ *
  */
 public class Main {
 
 	public static void shell(int[] a){
 		int step = a.length/2;
 		while(step > 0){
-			for(int i  = step; i < a.length; i++){
+			for(int i = 1; i < a.length; i ++){
 				int j = i;
 				int temp = a[j];
-				while(j - step >= 0 && temp < a[j - step]){
+				while(j >= step && temp < a[j - step]){
 					a[j] = a[j - step];
-					j = j - step;
+					j -= step;
 				}
 				a[j] = temp;
 			}
-			step = step/2;
+			step /= 2;
 		}
 	}
 	
 	public static void main(String[] args) {
-		int[] a = {9,8,2,1,4,3,6,5,7};
+		int[] a = {9,8,7,6,5,4,3,2,1};
 		Main.shell(a);
 		for(int i = 0; i < a.length; i++){
 			System.out.print(a[i]+" ");
 		}
+		
 	}
 
 }
