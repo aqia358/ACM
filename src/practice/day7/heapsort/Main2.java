@@ -8,20 +8,24 @@ package practice.day7.heapsort;
 public class Main2 {
 
 	public static void heap(int[] a){
-		for(int i = a.length - 1; i > 0; i--)
-			buildHeap(a, 0, i);
-		for(int j = a.length - 1; j > 0; j--){
-			
-			buildHeap(a, j, j);
+		for(int i = (a.length - 1)/2; i >= 0; i--)
+			buildHeap(a, a.length, i);
+		for(int j = a.length; j > 0; j--){
+			swap(a, j, 0);
+			buildHeap(a, j, 0);
 		}
 	}
-	public static void buildHeap(int[] a, int pos, int size){
-		if(2*pos+2 <= size && a[2*pos+1] < a[2*pos+2]){
-			swap(a, 2*pos+1, 2*pos+2);
+	public static void buildHeap(int[] a, int size , int pos){
+		int largest = pos;
+		if(2*pos+2 < size && pos < a[2*pos+2]){
+			largest = 2*pos+2;
 		}
-		if(a[pos] < a[2*pos+1]){
-			swap(a, pos, 2*pos+1);
-			buildHeap(a, 2*pos+1, size);
+		if(2*pos+1 < size && a[largest] < a[2*pos+1]){
+			largest = 2*pos+1;
+		}
+		if(largest != pos){
+			swap(a, pos, largest);
+			buildHeap(a, size , largest);
 		}
 	}
 	
@@ -32,6 +36,11 @@ public class Main2 {
 	}
 	
 	public static void main(String[] args) {
+		int[] a = {9,8,7,6,3,5,4,3,2,1,1};
+		Main.heap(a);
+		for(int i = 0; i < a.length; i++){
+			System.out.print(a[i]+" ");
+		}
 		
 	}
 
