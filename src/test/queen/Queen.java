@@ -27,7 +27,7 @@ public class Queen {
 		if (tempRow == 8) {
 //			flag = true;
 			count++;
-			System.out.println("------------"+count+"----");
+			System.out.println("------"+count+"------");
 			print(queen);
 		} else {
 			while (tempCol < 8 && !flag){

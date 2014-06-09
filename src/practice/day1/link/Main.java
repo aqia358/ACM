@@ -15,6 +15,18 @@ public class Main {
 		}
 		return head;
 	}
+	
+	public static Node copy(Node root){
+		Node head = null;
+		while(root != null){
+			Node temp = root.next;
+			temp.next = head;
+			head = temp;
+			root = root.next;
+		}
+		return head;
+	}
+	
 	public static void main(String[] args) {
 		List<Node> lists = new ArrayList<Node>();
 		Node n1 = new Node(1);
