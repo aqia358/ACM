@@ -1,27 +1,39 @@
 package lhl.summary;
 
+/**
+ * 深度遍历（preOrder,inOrder,postOrder)递归非递归
+ * 广度遍历
+ * 树的最大最小深度，路径
+ * 是否是平衡二叉树
+ * 
+ */
 import java.util.Stack;
 
 public class TreeSummary {
 	public static int maxDepth;
 
-	public static void preOrder(Tree root){
-		if(root == null)return;
+	public static void preOrder(Tree root) {
+		if (root == null)
+			return;
 		preOrder(root.left);
 		System.out.print(root.val);
 		preOrder(root.right);
 	}
-	public static void postOrder(Tree root){}
-	public static void inOrder(Tree root){}
-	
-	public static void preOrderByStack(Tree root){
+
+	public static void postOrder(Tree root) {
+	}
+
+	public static void inOrder(Tree root) {
+	}
+
+	public static void inOrderByStack(Tree root) {
 		Stack<Tree> s = new Stack<Tree>();
-		if(root == null){
+		if (root == null) {
 			System.out.println("null tree");
-			return; 
+			return;
 		}
-		while(root != null || !s.isEmpty()){
-			while(root != null){
+		while (root != null || !s.isEmpty()) {
+			while (root != null) {
 				s.push(root);
 				root = root.left;
 			}
@@ -30,14 +42,15 @@ public class TreeSummary {
 			root = root.right;
 		}
 	}
-	public static void inOrderByStack(Tree root){
+
+	public static void preOrderByStack(Tree root) {
 		Stack<Tree> s = new Stack<Tree>();
-		if(root == null){
+		if (root == null) {
 			System.out.println("null tree");
 			return;
 		}
-		while(root != null || !s.isEmpty()){
-			while(root != null){
+		while (root != null || !s.isEmpty()) {
+			while (root != null) {
 				s.push(root);
 				System.out.print(root.val);
 				root = root.left;
@@ -46,24 +59,25 @@ public class TreeSummary {
 			root = root.right;
 		}
 	}
-	public static void postOrderByStack(Tree root){
-		if(root == null){
+
+	public static void postOrderByStack(Tree root) {
+		if (root == null) {
 			System.out.println("null tree");
 			return;
 		}
 		int[] flag = new int[20];
 		Stack<Tree> s = new Stack<Tree>();
-		while(root != null){
+		while (root != null) {
 			s.push(root);
 			flag[s.size()] = 0;
 			root = root.left;
 		}
-		while(!s.isEmpty()){
+		while (!s.isEmpty()) {
 			root = s.peek();
-			while(root.right != null && flag[s.size()] == 0){
+			while (root.right != null && flag[s.size()] == 0) {
 				flag[s.size()] = 1;
 				root = root.right;
-				while(root != null){
+				while (root != null) {
 					s.push(root);
 					flag[s.size()] = 0;
 					root = root.left;
@@ -71,18 +85,58 @@ public class TreeSummary {
 			}
 			root = s.pop();
 			System.out.print(root.val);
-			
+
 		}
 	}
-	
-	public static void treeDepth(Tree root, int depth){
-		if(root == null)return;
-		treeDepth(root.left, depth + 1);
-		treeDepth(root.right, depth + 1);
-		if(maxDepth < depth)
-			maxDepth = depth;
+
+	public static int depth(Tree root) {
+		if (root == null)
+			return 0;
+		return 1 + Math.max(depth(root.left), depth(root.right));
 	}
 	
+	public static int minDepth(Tree root, int depth){
+		if(root == null) return 9999;
+		if(root.left == null && root.right == null)
+			return depth;
+		return Math.min(minDepth(root.left, depth), minDepth(root.right, depth));
+	}
+
+	public static boolean isBalanced(Tree root) {
+		if (root == null)
+			return true;
+		int leftDepth = depth(root.left);
+		int rightDepth = depth(root.right);
+		if(Math.abs(leftDepth - rightDepth) > 1)
+			return false;
+		else
+			return isBalanced(root.left) && isBalanced(root.right);
+	}
+	
+	public static boolean isBalanced(Tree root, Depth d){
+		if(root == null){
+			d.height = 0;
+			return true;
+		}
+		Depth left = new Depth();
+		Depth right = new Depth();
+		if(isBalanced(root.left, left) && isBalanced(root.right, right)){
+			if(Math.abs(left.height - right.height) <= 1){
+				d.height = Math.max(left.height, right.height);
+				return true;
+			}
+		}
+		return false;
+	}
+	public static void treeDepth(Tree root, int depth) {
+		if (root == null)
+			return;
+		treeDepth(root.left, depth + 1);
+		treeDepth(root.right, depth + 1);
+		if (maxDepth < depth)
+			maxDepth = depth;
+	}
+
 	public static void main(String[] args) {
 		Tree t0 = new Tree(0);
 		Tree t1 = new Tree(1);
@@ -91,7 +145,7 @@ public class TreeSummary {
 		Tree t4 = new Tree(4);
 		Tree t5 = new Tree(5);
 		Tree t6 = new Tree(6);
-		t0.left =t1;
+		t0.left = t1;
 		t0.right = t2;
 		t1.left = t3;
 		t1.right = t4;
@@ -102,11 +156,16 @@ public class TreeSummary {
 	}
 
 }
-class Tree{
+
+class Depth{
+	public int height;
+}
+class Tree {
 	public int val;
 	public Tree left;
 	public Tree right;
-	public Tree(int value){
+
+	public Tree(int value) {
 		val = value;
 	}
 }
