@@ -5,8 +5,9 @@ package lhl.summary;
  * 广度遍历
  * 树的最大最小深度，路径
  * 是否是平衡二叉树
- * 
+ * 生成1-n所有二叉树
  */
+import java.util.List;
 import java.util.Stack;
 
 public class TreeSummary {
@@ -137,6 +138,10 @@ public class TreeSummary {
 			maxDepth = depth;
 	}
 
+	public static List<Tree> generateTree(int n){
+		
+		return null;
+	}
 	public static void main(String[] args) {
 		Tree t0 = new Tree(0);
 		Tree t1 = new Tree(1);
