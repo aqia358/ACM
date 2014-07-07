@@ -1,6 +1,21 @@
 package lhl.summary;
 
+/**
+ * 归并 快排
+ * @author aqia358
+ *
+ */
 public class ListNodeSummary {
+
+	public static ListNode merge(ListNode head){
+
+		return null;
+	}
+	
+	public static ListNode quickSort(ListNode head){
+		
+		return null;
+	}
 
 	public static ListNode detectCycle(ListNode head){
 		
