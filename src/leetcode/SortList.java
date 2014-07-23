@@ -48,32 +48,28 @@ public class SortList {
 	public static ListNode mergesoft(ListNode l, ListNode r, int start, int center, int end){
 		ListNode head = new ListNode(-1);
 		ListNode temp = head;
-		int rs = center + 1;
-		while(start <= center && rs <= end){
-			while(start <= center && rs <= end && l.val <= r.val){
+		while(l != null && r != null){
+			while(l != null && r != null && l.val <= r.val){
 				temp.next = l;
 				temp = l;
 				l =  l.next;
-				start++;
 			}
-			while(start <= center && rs <= end && l.val > r.val){
+			while(l != null && r != null && l.val > r.val){
 				temp.next = r;
 				temp = r;
 				r =  r.next;
-				rs++;
 			}
 		}
-		while(start++ <= center){
+		while(l != null){
 			temp.next = l;
 			temp = l;
 			l =  l.next;
 		}
-		while(rs++ <= end){
+		while(r != null){
 			temp.next = r;
 			temp = r;
 			r =  r.next;
 		}
-		temp.next = r.next;
 		return head.next;
 	}
 	public static ListNode getNode(ListNode head, int index){

@@ -1,4 +1,4 @@
-package lhl.summary;
+package lhl.summary.temp;
 
 /**
  * 二项式的系数

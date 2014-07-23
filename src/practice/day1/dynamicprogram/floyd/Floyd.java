@@ -19,9 +19,9 @@ public class Floyd {
 	public static void floyd(){
 		int i,j,k;
 		i = j = k = 0;
-		for(i = 0; i < N; ++i)
-			for(j = 0; j < N; ++j)
-				for(k = 0; k < N; ++k)
+		for(k = 0; k < N; ++k)
+			for(i = 0; i < N; ++i)
+				for(j = 0; j < N; ++j)
 					if(f[i][j] > f[i][k] + f[k][j]){
 						f[i][j] = f[i][k] + f[k][j];
 						path[i][j] = k;

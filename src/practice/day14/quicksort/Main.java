@@ -13,7 +13,7 @@ public class Main {
 		int right = end;
 		int key = a[left];
 		while(left < right){
-			while(left < right && a[right] > key)
+			while(left < right && a[right] >= key)
 				right--;
 			if(left < right)
 				a[left] = a[right];
@@ -38,7 +38,7 @@ public class Main {
 	public static void main(String[] args) {
 		int[] a = {9,8,7,6,5,4,3,2,1};
 		int[] b = {1};
-		int[] c = {1,2,3,4,5,6,7,8,9};
+		int[] c = {1,2,3,4,5,6,7,9,8,9};
 		quickSort(a, 0, a.length - 1);
 		quickSort(b, 0, b.length - 1);
 		quickSort(c, 0, c.length - 1);
