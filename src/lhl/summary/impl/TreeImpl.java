@@ -34,6 +34,7 @@ public class TreeImpl implements Tree {
 		System.out.println("levelorder test");
 		tree.levelOrder(t0);
 		System.out.println();
+		tree.levelOrderS(t0);
 
 	}
 
@@ -152,6 +153,46 @@ public class TreeImpl implements Tree {
 			System.out.print(root.val);
 			if(root.left != null) q.add(root.left);
 			if(root.right != null) q.add(root.right);
+		}
+	}
+	
+	public void levelOrderS(TreeNode root) {
+		if(root == null) return;
+		LinkedList<TreeNode> q = new LinkedList<TreeNode>();
+		Stack<TreeNode> s = new Stack<TreeNode>();
+		TreeNode sign = new TreeNode(-1);
+		boolean flag = false;
+		q.add(root);
+		q.add(sign);
+		while(!q.isEmpty()){
+			root = q.pop();
+			if(flag){
+				if(root.equals(sign)){
+					if(q.isEmpty()) return;
+					while(!s.isEmpty()){
+						root = s.pop();
+						System.out.print(root.val);
+					}
+					q.add(sign);
+					System.out.println();
+					flag = !flag;
+				}else{
+					s.push(root);
+					if(root.left != null) q.add(root.left);
+					if(root.right != null) q.add(root.right);
+				}
+			}else{
+				if(root.equals(sign)){
+					if(q.isEmpty()) return;
+					q.add(sign);
+					System.out.println();
+					flag = !flag;
+				}else {
+					System.out.print(root.val);
+					if(root.left != null) q.add(root.left);
+					if(root.right != null) q.add(root.right);
+				}
+			}
 		}
 	}
 

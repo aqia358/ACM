@@ -8,12 +8,12 @@ public class WordSearch {
 		if(row == 0) return false;
 		int col = board[0].length;
 		int[][] f = new int[row][col];
+		for(int m = 0; m < row; m++)
+			for(int n = 0; n < col; n++)
+				f[m][n] = -1;
 		for(int i = 0; i < row; ++i)
 			for(int j = 0; j < col; ++j){
 				if(board[i][j] == word.charAt(0)){
-					for(int m = 0; m < row; m++)
-						for(int n = 0; n < col; n++)
-							f[m][n] = -1;
 					if(dfs(board, i, j, word, 0, f)) return true;
 				}
 			}

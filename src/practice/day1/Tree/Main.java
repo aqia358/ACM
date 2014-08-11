@@ -2,6 +2,7 @@ package practice.day1.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 2014年3月19日 22:28:21
@@ -52,12 +53,40 @@ public class Main {
 			levelPrint(lists);
 	}
 	
+	public static void preOrderByStack(Node root) {
+		Stack<Node> stack = new Stack<Node>();
+		while(!stack.isEmpty() || root != null){
+			while(root != null) {
+				stack.add(root);
+				System.out.print(root.value+" ");
+				root = root.left;
+			}
+			root = stack.pop();
+			root = root.right;
+		}
+		System.out.println();
+	}
+	
 	public static void preOrder(Node node){
 		if(node != null){
 			System.out.print(node.value+" ");
 			preOrder(node.left);
 			preOrder(node.right);
 		}
+	}
+	
+	public static void inOrderByStack(Node node) {
+		Stack<Node> s = new Stack<Node>();
+		while(!s.isEmpty() || node != null) {
+			while(node != null) {
+				s.add(node);
+				node = node.left;
+			}
+			node = s.pop();
+			System.out.print(node.value + " ");
+			node = node.right;
+		}
+		System.out.println();
 	}
 
 	public static void inOrder(Node node){
@@ -66,6 +95,28 @@ public class Main {
 			System.out.print(node.value+" ");
 			inOrder(node.right);
 		}
+	}
+	
+	public static void postOrderByStack(Node node) {
+		Stack<Node> s = new Stack<Node>();
+		do{
+			while(node != null){
+				s.add(node);
+				node = node.left;
+			}
+			Node pre = null;
+			while(!s.isEmpty()){
+				node = s.peek();
+				if(node.right == pre) {
+					System.out.print(node.value+" ");
+					pre = s.pop();
+				} else {
+					node = node.right;
+					break;
+				}
+			}
+		} while(!s.isEmpty());
+		System.out.println();
 	}
 	
 	public static void postOrder(Node node){
@@ -80,10 +131,13 @@ public class Main {
 		System.out.println();
 		Main.preOrder(tree);
 		System.out.println();
+		preOrderByStack(tree);
 		Main.inOrder(tree);
 		System.out.println();
+		inOrderByStack(tree);
 		Main.postOrder(tree);
 		System.out.println();
+		postOrderByStack(tree);
 		levelOrder(tree);
 	}
 
