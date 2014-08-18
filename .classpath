@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
-	<classpathentry kind="lib" path="F:/百度云/work/util tools/Java/CGLib/asm.jar"/>
-	<classpathentry kind="lib" path="F:/百度云/work/util tools/Java/CGLib/cglib-2.1.3.jar"/>
+	<classpathentry kind="lib" path="D:/software/java/lib/asm.jar"/>
+	<classpathentry kind="lib" path="D:/software/java/lib/cglib-2.1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
